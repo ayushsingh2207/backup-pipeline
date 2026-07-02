@@ -19,7 +19,8 @@ pipeline {
                 sh '''
                 docker create --name temp-backup-container backup-pipeline-image
                 docker start -a temp-backup-container
-                docker cp temp-backup-container:/data/backups ./backups
+                mkdir -p backups
+                docker cp temp-backup-container:/data/backups/. ./backups
                 docker rm temp-backup-container
                 '''
             }
