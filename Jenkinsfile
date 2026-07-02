@@ -23,7 +23,7 @@ pipeline {
                 docker cp temp-backup-container:/data/backups/. ./backups
                 docker rm temp-backup-container
 
-                
+                echo "SIMULATING CORRUPTION FOR EMAIL TEST" >> $(ls -t backups/*.tar.gz | head -n 1)
                 '''
             }
         }
