@@ -17,3 +17,8 @@ tar -czf "$BACKUP_FILE" -C "$SOURCE_DIR" .
 # Confirm what happened
 echo "Backup created: $BACKUP_FILE"
 ls -lh "$BACKUP_FILE"
+
+# Generate a checksum (unique fingerprint) of the backup file
+sha256sum "$BACKUP_FILE" > "$BACKUP_FILE.sha256"
+echo "Checksum generated: $BACKUP_FILE.sha256"
+cat "$BACKUP_FILE.sha256"

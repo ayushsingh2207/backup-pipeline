@@ -25,9 +25,14 @@ pipeline {
             }
         }
 
-        stage('Verify Backup') {
+        stage('Verify Backup Integrity') {
             steps {
-                sh 'ls -la ./backups'
+                sh '''
+                cd backups
+                LATEST_BACKUP=$(ls -t *.tar.gz | head -n 1)
+                echo "Verifying: $LATEST_BACKUP"
+                sha256sum -c "$LATEST_BACKUP.sha256"
+                '''
             }
         }
     }
