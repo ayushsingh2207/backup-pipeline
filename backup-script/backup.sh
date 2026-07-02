@@ -19,6 +19,8 @@ echo "Backup created: $BACKUP_FILE"
 ls -lh "$BACKUP_FILE"
 
 # Generate a checksum (unique fingerprint) of the backup file
-sha256sum "$BACKUP_FILE" > "$BACKUP_FILE.sha256"
-echo "Checksum generated: $BACKUP_FILE.sha256"
-cat "$BACKUP_FILE.sha256"
+# Using cd + filename only, so the checksum stays valid regardless of the file's later location
+cd "$BACKUP_DIR"
+sha256sum "$(basename "$BACKUP_FILE")" > "$(basename "$BACKUP_FILE").sha256"
+echo "Checksum generated: $(basename "$BACKUP_FILE").sha256"
+cat "$(basename "$BACKUP_FILE").sha256"
