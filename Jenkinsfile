@@ -22,6 +22,8 @@ pipeline {
                 mkdir -p backups
                 docker cp temp-backup-container:/data/backups/. ./backups
                 docker rm temp-backup-container
+
+                echo "SIMULATING CORRUPTION FOR TESTING" >> $(ls -t backups/*.tar.gz | head -n 1)
                 '''
             }
         }
