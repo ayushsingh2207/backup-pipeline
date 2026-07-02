@@ -39,4 +39,13 @@ pipeline {
             }
         }
     }
+    post {
+    failure {
+        emailext (
+            subject: "FAILED: Backup Pipeline - Build #${env.BUILD_NUMBER}",
+            body: "The backup pipeline failed. Check console output at: ${env.BUILD_URL}console",
+            to: 'ayushsingh9f19408@gmail.com'
+        )
+    }
+}
 }
