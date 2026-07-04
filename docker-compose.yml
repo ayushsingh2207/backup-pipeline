@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   metrics-exporter:
     build:
@@ -9,7 +7,7 @@ services:
     ports:
       - "9101:9101"
     volumes:
-      - ./backups:/data/backups
+      - jenkins_home:/var/jenkins_home
 
   prometheus:
     image: prom/prometheus:latest
@@ -28,3 +26,7 @@ services:
       - "3000:3000"
     depends_on:
       - prometheus
+
+volumes:
+  jenkins_home:
+    external: true
