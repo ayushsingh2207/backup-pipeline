@@ -1,0 +1,8 @@
+FROM python:3.11-alpine
+
+WORKDIR /app
+COPY metrics_exporter.py .
+
+EXPOSE 9101
+
+CMD ["python3", "metrics_exporter.py"]
