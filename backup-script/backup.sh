@@ -1,5 +1,6 @@
 #!/bin/bash
-exit 1
+
+# exit 1
 
 # Get current date and time for naming the backup
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
